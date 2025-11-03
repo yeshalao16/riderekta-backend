@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') { http_response_code(204); exit; }
 $host = $_ENV['MYSQLHOST'] ?? 'mysql.railway.internal';
 $user = $_ENV['MYSQLUSER'] ?? 'root';
 $pass = $_ENV['MYSQLPASSWORD'] ?? 'WklwEbrwWJJrLcyQheVdnEyroaDohxil';
-$name = $_ENV['MYSQLDATABASE'] ?? 'riderekta_db';
+$name = $_ENV['MYSQLDATABASE'] ?? 'railway';
 $port = intval($_ENV['MYSQLPORT'] ?? 3306);
 
 $conn = @new mysqli($host, $user, $pass, $name, $port);
@@ -25,3 +25,4 @@ if ($conn->connect_errno) {
 
 $conn->set_charset("utf8mb4");
 ?>
+
