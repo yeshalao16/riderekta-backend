@@ -1,0 +1,18 @@
+# Dockerfile
+FROM php:8.2-apache
+
+# Enable useful Apache features (optional but common)
+RUN a2enmod rewrite
+
+# Install MySQL drivers
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+# Point Apache to your public folder (you seem to serve from /public)
+# If your entry files live at repo/public (like /app/public on Railway), do this:
+RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
+
+# Copy your app code
+COPY . /var/www/html
+
+# (Optional) set correct permissions for writable dirs
+# RUN chown -R www-data:www-data /var/www/html
